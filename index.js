@@ -12,8 +12,7 @@ const camelcaseRequest = require('./middlewares/camelCaseRequest');
 const snakecaseResponse = require('./middlewares/snakeCaseResponse');
 
 require('dotenv').config();
-// require('./models');
-require('./utils/freeswitch').connect();
+require('./models');
 
 const app = express();
 
@@ -40,9 +39,7 @@ app.use(
   }),
 );
 
-const apiVersion1 = '/api/v1';
-app.use(apiVersion1, require('./routes'));
-app.use(apiVersion1, require('./routes/freeswitchRoute'));
+require('./routes')(app);
 
 app.use(errorHandler);
 
@@ -50,5 +47,3 @@ const { PORT } = process.env;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-require('./services/cpu');
