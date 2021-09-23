@@ -1,3 +1,4 @@
+const serverless = require('serverless-http');
 const express = require('express');
 const compression = require('compression');
 const bodyParser = require('body-parser');
@@ -12,7 +13,7 @@ const camelcaseRequest = require('./middlewares/camelCaseRequest');
 const snakecaseResponse = require('./middlewares/snakeCaseResponse');
 
 require('dotenv').config();
-require('./models');
+// require('./models');
 
 const app = express();
 
@@ -43,7 +44,9 @@ require('./routes')(app);
 
 app.use(errorHandler);
 
-const { PORT } = process.env;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// const { PORT } = process.env;
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+
+module.exports.handler = serverless(app);

@@ -1,0 +1,21 @@
+# serverless.yml
+
+service: template-nodejs-serverless
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+  lambdaHashingVersion: '20201221'
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - httpApi: '*'
+
+custom:
+  profiles:
+    dev: cuonglv
+    prod: prodProfile

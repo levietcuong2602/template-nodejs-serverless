@@ -1,11 +1,11 @@
 const snakecaseKeys = require('snakecase-keys');
 const statusCodes = require('../errors/statusCode');
 const getErrorMessage = require('../errors/message');
-const { logger } = require('../utils/logger');
+// const { logger } = require('../utils/logger');
 // Khi nhận được lỗi được throw ra thì sẽ đi qua hàm này và trả về client
 // eslint-disable-next-line no-unused-vars
 function errorHandler(err, req, res, next) {
-  logger.error(err);
+  console.error(err);
   let statusCode = err.code;
   let { message } = err;
   const code = err.code || statusCodes.INTERNAL_SERVER_ERROR;
